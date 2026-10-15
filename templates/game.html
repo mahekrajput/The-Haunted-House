@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} | The House That Remembers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <main class="game-page scene-transition{% if ending %} ending-page{% endif %}">
+        {% if ending %}
+            <header class="ending-heading">
+                <h1>Game Over</h1>
+            </header>
+
+            <div class="ending-art">
+                <img
+                    src="{{ url_for('static', filename='images/ending-skull.png') }}"
+                    alt="Skull and crossbones"
+                >
+            </div>
+
+            <section class="scene-copy ending-copy" aria-labelledby="scene-title">
+                <h2 id="scene-title">{{ title }}</h2>
+                <p>{{ story_text }}</p>
+            </section>
+
+            <section class="scene-choices" aria-label="Ending options">
+                <form class="play-again-form" action="{{ url_for('play_again') }}" method="post">
+                    <button class="play-again-button" type="submit">Play Again</button>
+                </form>
+            </section>
+        {% else %}
+            <div class="scene-art{% if title == 'The Hallway' %} scene-image-hallway{% elif title == 'The Living Portrait' %} scene-image-portrait{% elif title == 'The Whispering Study' %} scene-image-study{% elif title == "The Portrait's Secret" or title == "The Diary's Warning" %} scene-atmosphere{% endif %}">
+                {% if title == 'The Hallway' %}
+                    <img class="scene-art-image" src="{{ url_for('static', filename='images/hallway.jpg') }}" alt="{{ art_label }}">
+                {% elif title == 'The Living Portrait' %}
+                    <img class="scene-art-image" src="{{ url_for('static', filename='images/portrait.jpeg') }}" alt="{{ art_label }}">
+                {% elif title == 'The Whispering Study' %}
+                    <img class="scene-art-image" src="{{ url_for('static', filename='images/study.jpg') }}" alt="{{ art_label }}">
+                {% endif %}
+            </div>
+
+            <section class="scene-copy" aria-labelledby="scene-title">
+                <h1 id="scene-title">{{ title }}</h1>
+                <p class="story-text">{{ story_text }}</p>
+                <button class="reveal-story" type="button" hidden>Show full story</button>
+            </section>
+
+            <section class="scene-choices" aria-label="Available choices">
+                {% for choice in choices %}
+                    <form class="choice-form" action="{{ url_for('choose') }}" method="post">
+                        <input type="hidden" name="choice" value="{{ choice.id }}">
+                        <button class="choice-button" type="submit">
+                            {{ choice.label }}
+                        </button>
+                    </form>
+                {% endfor %}
+            </section>
+        {% endif %}
+    </main>
+</body>
+</html>

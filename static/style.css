@@ -1,0 +1,651 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    background: #262424;
+    color: #f4eeee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.scene-copy h1,
+.ending-copy h2 {
+    font-family: "Euphoria Script", "URW Chancery L", "Apple Chancery", cursive;
+    font-weight: 400;
+}
+
+.intro h1,
+.ending-heading h1 {
+    font-family: "UnifrakturCook", "Old English Text MT", Georgia, serif;
+    font-weight: 700;
+}
+
+.landing-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.25rem, 4vh, 2.5rem);
+    padding: clamp(1.5rem, 6vh, 3.5rem) clamp(1rem, 5vw, 2rem);
+    overflow-x: clip;
+}
+
+.intro {
+    width: min(100%, 68rem);
+    text-align: center;
+}
+
+.intro h1 {
+    margin: 0 0 clamp(0.8rem, 2vh, 1.2rem);
+    color: #ff2929;
+    font-size: clamp(3.1rem, 9vw, 6.25rem);
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    line-height: 1.15;
+    text-shadow:
+        0 1px 0 #a91d25,
+        0 2px 0 rgb(10 8 9 / 75%),
+        0 0 0.55rem rgb(255 41 41 / 38%),
+        0 0 1.4rem rgb(255 41 41 / 20%);
+    text-transform: uppercase;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+    animation: title-arrive 900ms ease-out both;
+    transition: text-shadow 250ms ease, transform 250ms ease;
+}
+
+.intro h1:hover {
+    text-shadow:
+        0 1px 0 #a91d25,
+        0 2px 0 rgb(10 8 9 / 75%),
+        0 0 0.75rem rgb(255 41 41 / 48%),
+        0 0 1.8rem rgb(255 41 41 / 28%);
+    transform: translateY(-2px);
+}
+
+.intro p {
+    margin: 0;
+    color: #e0dada;
+    font-family: "Goudy Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: clamp(0.95rem, 2.3vw, 1.2rem);
+    font-style: italic;
+    letter-spacing: 0.025em;
+    line-height: 1.5;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 65%);
+}
+
+.ghost {
+    width: min(78vw, 21rem);
+    height: auto;
+    color: #777575;
+    filter: blur(2px);
+    flex: 0 1 auto;
+}
+
+.enter-button {
+    width: min(100%, 25rem);
+    min-height: 3.75rem;
+    padding: 0.75rem 1.2rem;
+    border: 2px solid #080808;
+    background: #f04444;
+    color: #fff;
+    cursor: pointer;
+    font: 900 clamp(1.15rem, 3.5vw, 1.65rem) Arial, Helvetica, sans-serif;
+    text-shadow: 1px 2px 0 #171313;
+    text-transform: uppercase;
+    box-shadow: 0 0 0.7rem rgb(240 68 68 / 24%), inset 0 1px 0 rgb(255 255 255 / 14%);
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.enter-button:hover {
+    background: #ff5757;
+    box-shadow: 0 0 1.1rem rgb(240 68 68 / 38%), inset 0 1px 0 rgb(255 255 255 / 18%);
+    transform: translateY(-2px);
+}
+
+.enter-button:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.enter-button:focus-visible {
+    outline: 3px solid #f4eeee;
+    outline-offset: 4px;
+    box-shadow: 0 0 1rem rgb(240 68 68 / 38%);
+}
+
+.landing-page form {
+    width: min(100%, 25rem);
+}
+
+@keyframes title-arrive {
+    from {
+        opacity: 0;
+        transform: translateY(0.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-page {
+    width: min(100%, 58rem);
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: clamp(0.8rem, 2vh, 1.25rem);
+    padding: clamp(1rem, 2.8vh, 1.8rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+.scene-art {
+    position: relative;
+    min-height: clamp(14rem, 34vh, 20rem);
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgb(244 238 238 / 18%);
+    border-radius: 0.25rem;
+    box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+    background: #171516;
+}
+
+.scene-art-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: min(360px, 52svh);
+    object-fit: contain;
+    background: #171516;
+}
+
+.scene-image-hallway,
+.scene-image-portrait,
+.scene-image-study {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 0;
+    background: #171516;
+}
+
+.scene-image-hallway::after,
+.scene-image-portrait::after,
+.scene-image-study::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+}
+
+.scene-image-hallway::after {
+    background: linear-gradient(90deg, rgb(9 13 24 / 30%), transparent 45%, rgb(9 13 24 / 30%)),
+        linear-gradient(0deg, rgb(10 10 14 / 36%), transparent 45%);
+}
+
+.scene-image-portrait::after {
+    background: radial-gradient(ellipse at center, transparent 35%, rgb(14 10 13 / 36%) 100%);
+}
+
+.scene-image-study::after {
+    background: linear-gradient(0deg, rgb(13 9 7 / 28%), transparent 58%),
+        linear-gradient(90deg, rgb(13 9 7 / 16%), transparent 50%, rgb(13 9 7 / 16%));
+}
+
+.scene-art-hallway {
+    background:
+        linear-gradient(90deg, rgb(7 7 9 / 78%), transparent 22% 78%, rgb(7 7 9 / 78%)),
+        radial-gradient(ellipse at 50% 5%, rgb(151 137 130 / 34%), transparent 50%),
+        linear-gradient(180deg, #383132 0%, #201d20 72%, #100f11 100%);
+}
+
+.scene-art-hallway::before {
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    width: 43%;
+    height: 92%;
+    border-right: 0.45rem solid rgb(9 9 11 / 72%);
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0 13%,
+        rgb(9 9 11 / 76%) 13.5% 16%
+    );
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    content: "";
+    opacity: 0.9;
+}
+
+.scene-art-hallway::after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 48%, rgb(0 0 0 / 17%) 50%, transparent 52%);
+    content: "";
+}
+
+.art-staircase {
+    position: absolute;
+    z-index: 1;
+    right: 8%;
+    bottom: 7%;
+    width: 40%;
+    height: 76%;
+    border-bottom: 0.35rem solid rgb(8 8 10 / 90%);
+    border-left: 0.3rem solid rgb(8 8 10 / 82%);
+    transform: skewY(-34deg);
+    opacity: 0.85;
+}
+
+.scene-atmosphere {
+    min-height: clamp(12rem, 28vh, 18rem);
+    background:
+        radial-gradient(ellipse at 50% 42%, rgb(120 86 78 / 13%), transparent 48%),
+        linear-gradient(145deg, #30272a, #171416 72%, #0d0c0e);
+}
+
+.scene-copy {
+    min-height: 0;
+    width: 100%;
+}
+
+.scene-copy h1 {
+    margin: 0 0 0.25rem;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.scene-copy p {
+    margin: 0;
+    color: #e0dada;
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+    font-size: clamp(1rem, 1.45vw, 1.1rem);
+    line-height: 1.55;
+}
+
+.story-text.is-typing::after {
+    display: inline-block;
+    width: 0.08em;
+    height: 1em;
+    margin-left: 0.12em;
+    background: currentColor;
+    content: "";
+    vertical-align: -0.12em;
+    animation: caret-blink 850ms steps(2, start) infinite;
+}
+
+.reveal-story {
+    min-height: 2.75rem;
+    margin-top: 0.2rem;
+    padding: 0.35rem 0;
+    border: 0;
+    background: transparent;
+    color: #f28b78;
+    cursor: pointer;
+    font: 600 0.9rem Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.reveal-story:hover {
+    color: #ffb09f;
+}
+
+.reveal-story:focus-visible {
+    outline: 2px solid #f28b78;
+    outline-offset: 3px;
+}
+
+.scene-choices {
+    display: grid;
+    gap: clamp(0.55rem, 1.2vh, 0.8rem);
+}
+
+.choice-form,
+.play-again-form {
+    width: 100%;
+    margin: 0;
+}
+
+.choice-button,
+.play-again-button {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #080808;
+    background: #f04444;
+    color: #fff;
+    cursor: pointer;
+    font: 700 1rem Arial, Helvetica, sans-serif;
+    text-align: left;
+    transition: background-color 150ms ease, transform 150ms ease, opacity 150ms ease;
+}
+
+.enter-button,
+.play-again-button {
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+}
+
+.choice-button:hover,
+.play-again-button:hover {
+    background: #ff5757;
+    box-shadow: 0 0.45rem 1rem rgb(240 68 68 / 22%);
+    transform: translateY(-2px);
+}
+
+.choice-button:focus-visible,
+.play-again-button:focus-visible,
+.enter-button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+}
+
+.choice-button.is-selected {
+    background: #c83232;
+    transform: scale(0.985);
+}
+
+.choice-button:disabled {
+    cursor: wait;
+    opacity: 0.72;
+}
+
+.ending-page .scene-choices {
+    grid-template-columns: 1fr;
+}
+
+.ending-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.55rem, 1.5vh, 1rem);
+    width: min(100%, 28rem);
+    max-width: 28rem;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vh, 2rem) clamp(1.25rem, 5vw, 2rem);
+}
+
+.ending-heading {
+    text-align: center;
+}
+
+.ending-heading h1 {
+    margin: 0;
+    color: #ff2929;
+    font-size: clamp(2.8rem, 6vw, 4.25rem);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 0 0.8rem rgb(255 35 35 / 35%);
+    text-transform: uppercase;
+}
+
+.ending-art {
+    width: min(54vw, 13rem);
+    max-height: 24svh;
+    flex: 0 1 auto;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ending-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 24svh;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+.ending-copy {
+    min-height: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.ending-copy h2 {
+    margin: 0 0 0.2rem;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+}
+
+.ending-copy p {
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.5;
+}
+
+.ending-page .scene-choices {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 23rem);
+}
+
+.ending-page .play-again-form {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.ending-page .play-again-button {
+    min-height: 3.25rem;
+    font-size: clamp(1.15rem, 4vw, 1.5rem);
+    text-align: center;
+}
+
+.scene-transition {
+    animation: scene-arrive 350ms ease both;
+}
+
+@keyframes scene-arrive {
+    from {
+        opacity: 0;
+        transform: translateY(0.6rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes caret-blink {
+    to {
+        visibility: hidden;
+    }
+}
+
+@media (min-width: 700px) {
+    .landing-page {
+        gap: clamp(1.5rem, 4vh, 2.5rem);
+    }
+
+    .ghost {
+        width: min(42vw, 25rem);
+    }
+
+    .mobile-break {
+        display: none;
+    }
+
+    .game-page {
+        gap: clamp(0.75rem, 1.8vh, 1.25rem);
+    }
+
+    .scene-art:not(.scene-image-hallway):not(.scene-image-portrait):not(.scene-image-study) {
+        min-height: clamp(10rem, 20vh, 14rem);
+    }
+
+    .scene-choices {
+        gap: 0.65rem;
+    }
+
+    .ending-page {
+        gap: clamp(0.6rem, 1.6vh, 1rem);
+    }
+
+    .ending-art {
+        width: min(28vw, 13rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .intro h1,
+    .enter-button {
+        animation: none;
+        transition: none;
+    }
+}
+
+@media (max-height: 620px) {
+    .landing-page {
+        gap: 0.8rem;
+        padding-block: 1rem;
+    }
+
+    .ghost {
+        width: min(48vh, 17rem);
+    }
+
+    .game-page {
+        gap: 0.6rem;
+        padding-block: 0.75rem;
+    }
+
+    .scene-art-image {
+        max-height: min(320px, 40svh);
+    }
+
+    .ending-page {
+        gap: 0.45rem;
+        padding-block: 0.75rem;
+    }
+
+    .ending-art {
+        width: min(42vw, 9rem);
+        max-height: 19svh;
+    }
+
+    .ending-art img {
+        max-height: 19svh;
+    }
+}
+
+@media (max-width: 699px) {
+    .landing-page {
+        gap: clamp(1rem, 3vh, 1.75rem);
+        padding-inline: clamp(1rem, 5vw, 1.5rem);
+    }
+
+    .intro h1 {
+        font-size: clamp(2.8rem, 13vw, 4.25rem);
+        line-height: 1.12;
+    }
+
+    .ghost {
+        width: min(72vw, 19rem);
+    }
+
+    .enter-button {
+        min-height: 3.5rem;
+    }
+
+    .game-page:not(.ending-page) {
+        gap: 0.9rem;
+        padding: 0.8rem clamp(0.8rem, 4vw, 1.25rem) 1.25rem;
+    }
+
+    .scene-art-image {
+        max-height: min(360px, 52svh);
+    }
+
+    .scene-copy h1 {
+        font-size: clamp(2rem, 9vw, 2.65rem);
+    }
+
+    .scene-copy p {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .scene-choices {
+        gap: 0.55rem;
+    }
+
+    .choice-button {
+        min-height: 3.25rem;
+        text-align: center;
+    }
+
+    .ending-page {
+        min-height: 100vh;
+        min-height: 100svh;
+        justify-content: center;
+        padding: 1rem clamp(1rem, 6vw, 1.5rem);
+    }
+
+    .ending-art {
+        width: min(50vw, 11rem);
+        max-height: 23svh;
+    }
+
+    .ending-art img {
+        max-height: 23svh;
+    }
+}
+
+@media (max-width: 699px) and (max-height: 620px) {
+    .landing-page {
+        gap: 0.65rem;
+        padding-block: 0.8rem;
+    }
+
+    .intro h1 {
+        font-size: clamp(2.3rem, 9vw, 3.25rem);
+    }
+
+    .ghost {
+        width: min(38vw, 11rem);
+    }
+
+    .game-page:not(.ending-page) {
+        gap: 0.5rem;
+        padding-block: 0.65rem;
+    }
+
+    .scene-art-image {
+        max-height: min(300px, 40svh);
+    }
+
+    .ending-art,
+    .ending-art img {
+        max-height: 18svh;
+    }
+}

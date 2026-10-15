@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The House That Remembers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <main class="landing-page">
+        <header class="intro">
+            <h1>THE HAUNTING MANOR</h1>
+            <p>Some doors should never be<br class="mobile-break"> opened…</p>
+        </header>
+
+        <svg class="ghost" viewBox="0 0 320 340" role="img" aria-labelledby="ghost-title">
+            <title id="ghost-title">A floating ghost</title>
+            <path
+                d="M160 8C116 8 99 48 87 102L24 97C12 96 7 110 15 121L42 158C54 174 44 204 32 225L6 270C-1 283 4 294 18 294L58 295C82 296 90 324 122 333C151 341 174 326 194 309C216 291 242 301 268 309C294 317 316 302 305 277L282 225C272 201 261 177 276 156L302 119C310 107 304 95 290 97L234 103C220 49 203 8 160 8Z"
+                fill="currentColor"
+            />
+            <ellipse cx="128" cy="116" rx="13" ry="23" fill="#292727" />
+            <ellipse cx="190" cy="116" rx="13" ry="23" fill="#292727" />
+            <ellipse cx="159" cy="170" rx="13" ry="16" fill="#292727" />
+        </svg>
+
+        <form action="{{ url_for('start_game') }}" method="post">
+            <button class="enter-button" type="submit">Enter the Manor</button>
+        </form>
+    </main>
+</body>
+</html>
